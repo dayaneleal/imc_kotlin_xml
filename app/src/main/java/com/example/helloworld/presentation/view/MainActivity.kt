@@ -9,7 +9,6 @@ import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.animation.ValueAnimator
 import androidx.core.content.ContextCompat
 import com.example.helloworld.R
@@ -17,20 +16,17 @@ import com.example.helloworld.databinding.ActivityMainBinding
 import com.example.helloworld.presentation.state.ImcUiState
 import com.example.helloworld.presentation.model.InputError
 import com.example.helloworld.presentation.viewModel.ImcViewModel
-import java.util.Locale
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private val viewModel: ImcViewModel by viewModels()
-
-    private val initialColor by lazy {
-        ContextCompat.getColor(this, R.color.imc_yellow_overweight)
-    }
-
+    private var savedState: Bundle? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        this.savedState = savedInstanceState
+
         enableEdgeToEdge()
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -39,7 +35,9 @@ class MainActivity : AppCompatActivity() {
         setupListeners()
         setupObservers()
 
-        (binding.imcIndicator.background as? GradientDrawable)?.setColor(initialColor)
+        if (savedInstanceState == null) {
+            resetUiToInitialState()
+        }
     }
 
     private fun setupListeners() {
@@ -92,7 +90,7 @@ class MainActivity : AppCompatActivity() {
         binding.weight.error = null
         binding.height.error = null
 
-        animateIndicator(uiState.indicatorPosition)
+        moveIndicator(uiState.indicatorPosition)
 
         val color = ContextCompat.getColor(this,uiState.classificationColorRes)
         val classificationText = getText(uiState.classificationTextRes)
@@ -106,6 +104,12 @@ class MainActivity : AppCompatActivity() {
         binding.tvImcMessage.setTextColor(color)
     }
 
+    private fun setIndicatorPosition(position: Float) {
+        val params = binding.imcIndicator.layoutParams as ConstraintLayout.LayoutParams
+        params.horizontalBias = position
+        binding.imcIndicator.layoutParams = params
+    }
+
     private fun resetUiToInitialState() {
         binding.weight.error = null
         binding.weight.text?.clear()
@@ -117,11 +121,9 @@ class MainActivity : AppCompatActivity() {
         binding.tvImcMessage.text = getString(R.string.imc_message)
         binding.tvImcMessage.setTextColor(Color.BLACK)
 
-        val constraintLayout = binding.cardConstraintLayout
-        val set = ConstraintSet()
-        set.clone(constraintLayout)
-        set.setHorizontalBias(binding.imcIndicator.id, 0.5f)
-        set.applyTo(constraintLayout)
+        setIndicatorPosition(0.5f)
+
+        val initialColor = ContextCompat.getColor(this, R.color.imc_yellow_overweight)
         (binding.imcIndicator.background as? GradientDrawable)?.setColor(initialColor)
     }
 
@@ -143,7 +145,12 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun animateIndicator(finalPosition: Float) {
+    private fun moveIndicator(finalPosition: Float) {
+        if (savedState != null) {
+            setIndicatorPosition(finalPosition)
+            return
+        }
+
         val params = binding.imcIndicator.layoutParams as ConstraintLayout.LayoutParams
         val currentPosition = params.horizontalBias
 
@@ -151,8 +158,7 @@ class MainActivity : AppCompatActivity() {
         animator.duration = 700
         animator.addUpdateListener {
             val animatedPosition = animator.animatedValue as Float
-            params.horizontalBias = animatedPosition
-            binding.imcIndicator.layoutParams = params
+            setIndicatorPosition(animatedPosition)
         }
         animator.start()
     }

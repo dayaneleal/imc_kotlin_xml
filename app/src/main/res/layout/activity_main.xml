@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:context=".presentation.view.MainActivity">
+
+<androidx.constraintlayout.widget.ConstraintLayout
     android:id="@+id/main"
     android:background="?android:attr/colorBackground"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".presentation.view.MainActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -28,7 +34,6 @@
             app:titleTextColor="?attr/colorOnPrimary" />
 
     </com.google.android.material.appbar.AppBarLayout>
-
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/til_weight"
@@ -104,9 +109,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/result_imc_label"
-        android:textFontWeight="200"
         android:textSize="24sp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/button_container" />
@@ -136,7 +140,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/imc_no_value"
-                android:layout_marginTop="24dp"
                 android:textSize="48sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -182,5 +185,15 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="32dp"
+        android:paddingHorizontal="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cv_imc"
+        android:text="@string/imc_disclaimer"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
