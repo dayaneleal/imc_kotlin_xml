@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">HelloWorld</string>
+    <string name="imc_message">Classificação</string>
+    <string name="imc_no_value">--</string>
+    <string name="invalid_error">Campo obrigatório ou inválido</string>
+    <string name="not_positive_error">O valor deve ser superior a 0</string>
+    <string name="result_imc_label">Resultado IMC</string>
+    <string name="imc_value_format">%.1f</string>
+
+    <!-- Strings de botões -->
+    <string name="btn_clean">Limpar</string>
+    <string name="btn_calculate">Calcular</string>
+
+    <!-- Strings para Classificação de IMC -->
+    <string name="imc_classification_underweight">Abaixo do peso</string>
+    <string name="imc_classification_normal">Normal</string>
+    <string name="imc_classification_overweight">Sobrepeso</string>
+    <string name="imc_classification_obesity_i">Obesidade Grau I</string>
+    <string name="imc_classification_obesity_ii">Obesidade Grau II</string>
+    <string name="imc_classification_obesity_iii">Obesidade Grau III</string>
+    <string name="imc_classification_unknown">Fora da Faixa</string>
+
+
+</resources>
