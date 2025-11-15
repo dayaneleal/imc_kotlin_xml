@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">HelloWorld</string>
+    <string name="imc_message">Classification</string>
+    <string name="imc_no_value">--</string>
+    <string name="invalid_error">Required or invalid field</string>
+    <string name="not_positive_error">The value must be greater than 0</string>
+    <string name="result_imc_label">BMI Result</string>
+    <string name="imc_value_format">%.1f</string>
+
+    <!-- Button Strings -->
+    <string name="btn_clean">Clear</string>
+    <string name="btn_calculate">Calculate</string>
+
+    <!-- Strings for BMI Classification -->
+    <string name="imc_classification_underweight">Underweight</string>
+    <string name="imc_classification_normal">Normal</string>
+    <string name="imc_classification_overweight">Overweight</string>
+    <string name="imc_classification_obesity_i">Obesity Grade I</string>
+    <string name="imc_classification_obesity_ii">Obesity Grade II</string>
+    <string name="imc_classification_obesity_iii">Obesity Grade III</string>
+    <string name="imc_classification_unknown">Out of Range</string>
+    <string name="imc_disclaimer">BMI is a measure that compares weight and height to indicate whether a person is below, within, or above the ideal weight. However, it does not differentiate between fat and muscle and should not be used alone to assess health.</string>
+    <string name="input_label_weight">Weight (kg)</string>
+    <string name="input_label_height">Height (cm)</string>
+
+</resources>

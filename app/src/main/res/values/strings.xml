@@ -20,5 +20,7 @@
     <string name="imc_classification_obesity_iii">Obesidade Grau III</string>
     <string name="imc_classification_unknown">Fora da Faixa</string>
     <string name="imc_disclaimer">O IMC é uma medida que compara o peso e a altura para indicar se a pessoa está abaixo, dentro ou acima do peso ideal. Porém, ele não diferencia gordura de músculo e não deve ser usado sozinho para avaliar a saúde.</string>
+    <string name="input_label_weight">Peso (kg)</string>
+    <string name="input_label_height">Altura (cm)</string>
 
 </resources>
